@@ -32,8 +32,7 @@ RUN rm -f target/release/deps/gateway_proxy*
 COPY ./src ./src
 
 # Step 8: Final build
-RUN cargo build --target=aarch64-unknown-linux-gnu --release; \
-    fi && \
+RUN cargo build --target=aarch64-unknown-linux-gnu --release && \
     cp target/release/gateway-proxy /gateway-proxy && \
     strip /gateway-proxy
 
