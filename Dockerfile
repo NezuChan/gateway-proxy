@@ -33,6 +33,7 @@ COPY ./src ./src
 
 # Step 8: Final build
 RUN cargo build --target=aarch64-unknown-linux-gnu --release && \
+    ls -l target/release && \
     cp target/release/gateway-proxy /gateway-proxy && \
     strip /gateway-proxy
 

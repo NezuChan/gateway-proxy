@@ -367,6 +367,7 @@ dependencies = [
  "metrics",
  "metrics-exporter-prometheus",
  "mimalloc",
+ "once_cell",
  "rand",
  "ring",
  "serde",
