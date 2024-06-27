@@ -23,21 +23,14 @@ COPY .cargo ./.cargo/
 RUN mkdir src/ && echo 'fn main() {}' > ./src/main.rs
 
 # Step 6: Build the project
-RUN if [ "$SIMD" == '0' ]; then \
-        cargo build --release --no-default-features --features no-simd; \
-    else \
-        cargo build --release; \
-    fi
+RUN cargo build --release;
 
 # Step 7: Clean up and prepare for the final build
 RUN rm -f target/release/deps/gateway_proxy*
 COPY ./src ./src
 
 # Step 8: Final build
-RUN if [ "$TARGET_CPU" == 'x86-64' ]; then \
-        cargo build --release --no-default-features --features no-simd; \
-    else \
-        cargo build --release; \
+RUN cargo build --release; \
     fi && \
     cp target/release/gateway-proxy /gateway-proxy && \
     strip /gateway-proxy
