@@ -16,3 +16,5 @@ jobs:
   docker:
     uses: nezuchan/workflows/.github/workflows/docker-build.yml@main
     secrets: inherit
+    with:
+      PLATFORMS: "linux/arm64/v8"
