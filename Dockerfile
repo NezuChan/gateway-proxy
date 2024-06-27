@@ -1,10 +1,11 @@
-FROM alpine:latest AS builder
+FROM debian:latest AS builder
 
 ARG SIMD=1
 
 # Step 1: Update and install dependencies
-RUN apk update && apk upgrade && \
-    apk add curl gcc g++ musl-dev cmake make
+RUN apt-get update && \
+    apt-get upgrade -y && \
+    apt-get install -y curl gcc g++ cmake make
 
 # Step 2: Install Rust
 RUN curl -sSf https://sh.rustup.rs | sh -s -- --profile minimal --default-toolchain nightly -y
