@@ -19,7 +19,6 @@ WORKDIR /build
 
 # Step 4: Copy necessary files
 COPY Cargo.toml Cargo.lock ./
-COPY .cargo ./.cargo/
 
 # Step 5: Create dummy main.rs for initial build
 RUN mkdir src/ && echo 'fn main() {}' > ./src/main.rs
