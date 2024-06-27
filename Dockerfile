@@ -8,10 +8,12 @@ RUN apt-get update && \
     apt-get install -y curl gcc g++ cmake make
 
 # Step 2: Install Rust
-RUN curl -sSf https://sh.rustup.rs | sh -s -- --profile minimal --default-toolchain nightly -y && rustup component add rust-src --toolchain nightly-aarch64-unknown-linux-gnu
+RUN curl -sSf https://sh.rustup.rs | sh -s -- --profile minimal --default-toolchain nightly -y
 
 # Step 3: Set environment variables
 ENV PATH="/root/.cargo/bin:${PATH}"
+
+RUN rustup component add rust-src --toolchain nightly-aarch64-unknown-linux-gnu
 
 WORKDIR /build
 
