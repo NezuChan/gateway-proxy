@@ -38,7 +38,7 @@ jobs:
 
       - name: Build Docker Image
         run: |
-            docker build --platform=linux/arm64/v8 -t gateway-proxy:${{ matrix.target-cpu }} --build-arg TARGET_CPU=${{ matrix.target-cpu }} .
+            docker build -t gateway-proxy:${{ matrix.target-cpu }} --build-arg TARGET_CPU=${{ matrix.target-cpu }} --platform=linux/arm64/v8 .
 
       - name: Create manifest and push it
         if: env.DOCKER_USERNAME && github.ref == 'refs/heads/main'
