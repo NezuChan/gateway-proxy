@@ -1,4 +1,4 @@
-FROM docker.io/library/alpine:edge AS builder
+FROM alpine:latest AS builder
 
 ARG SIMD=1
 
