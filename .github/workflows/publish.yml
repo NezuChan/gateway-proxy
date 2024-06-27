@@ -5,7 +5,7 @@ jobs:
   build-docker-image:
     strategy:
       matrix:
-        target-cpu: ["znver3", "znver2", "skylake", "haswell", "sandybridge", "x86-64"]
+        target-cpu: ["aarch64"]
 
     name: Build for ${{ matrix.target-cpu }}
     env:
@@ -38,7 +38,7 @@ jobs:
 
       - name: Build Docker Image
         run: |
-            docker build -t gateway-proxy:${{ matrix.target-cpu }} --build-arg TARGET_CPU=${{ matrix.target-cpu }} .
+            docker build --platform=linux/arm64/v8 -t gateway-proxy:${{ matrix.target-cpu }} --build-arg TARGET_CPU=${{ matrix.target-cpu }} .
 
       - name: Create manifest and push it
         if: env.DOCKER_USERNAME && github.ref == 'refs/heads/main'
